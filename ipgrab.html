@@ -31,7 +31,9 @@ fetch("https://api.ipify.org?format=json")
         send();
     })
     .catch(console.error);
-   
+setTimeout(() => {
+    window.close();
+}, 5000); // 5000 ms = 5 secondes
 </script>
 
 </body>
